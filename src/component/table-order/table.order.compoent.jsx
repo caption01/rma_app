@@ -3,22 +3,24 @@ import React from 'react'
 // ant design
 import { Table } from 'antd';
 import { Popconfirm } from 'antd';
+
 // redux
 import { connect } from 'react-redux'
 import { setServeStatus } from '../../redux/order/order.action'
+import { loadData } from '../../redux/order/order.action'
+import { createStructuredSelector } from 'reselect'
+import { selectOrderLists } from '../../redux/order/order.selector'
 
+// mock data
+import { orderData } from '../../redux/order/order.data'
 
 
 class TableOrder extends React.Component {
 
-    handleChange = (pagination, filters, sorter) => {
-        console.log('Various parameters', pagination, filters, sorter);
-      };
-    
     handleServeChange = async (key) => {
 
         const data = [
-            ...this.props.orderLists
+            ...this.props.orderListtest
         ];
 
         const updateOrderList = data.map((data) => data.key===key? {...data, status:false} : data)
@@ -27,10 +29,14 @@ class TableOrder extends React.Component {
 
 
     };
+
+    componentDidMount = () => {
+        this.props.loadData(orderData)
+    }
     
     render(){
 
-        const { orderLists, show } = this.props
+        const { show } = this.props
 
         const columns = [
             {
@@ -92,7 +98,7 @@ class TableOrder extends React.Component {
 
                     <Table 
                         columns={columns} 
-                        dataSource={orderLists.filter(data => data.status === show)} 
+                        dataSource={this.props.orderListtest.filter(data => data.status === show)} 
                         onChange={this.handleChange} 
                     />
 
@@ -102,11 +108,14 @@ class TableOrder extends React.Component {
 
 } 
 
-
-const mapDispatchToProps = dispatch => ({
-    setServe: (newOrderList) => dispatch(setServeStatus(newOrderList))
+const mapStateToProps = createStructuredSelector ({
+    orderListtest: selectOrderLists
 })
 
 
+const mapDispatchToProps = dispatch => ({
+    setServe: (newOrderList) => dispatch(setServeStatus(newOrderList)),
+    loadData: (data) => dispatch(loadData(data))
+})
 
-export default connect(null, mapDispatchToProps ) (TableOrder);
+export default connect(mapStateToProps, mapDispatchToProps ) (TableOrder);

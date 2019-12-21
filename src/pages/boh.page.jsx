@@ -6,8 +6,6 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 // component
 import OrderContainer from '../component/order-container/order-container.component'
 
-
-
 class BohPage extends React.Component {
 
     state = {
@@ -23,10 +21,13 @@ class BohPage extends React.Component {
     }
 
     liveTimeUpDate = () => {
-        
         this.setState({
             time: new Date()
         })
+    }
+
+    handleSelectMenu = (e) => {
+        this.setState({selectMenu: e.key})
     }
 
     render() {
@@ -46,7 +47,7 @@ class BohPage extends React.Component {
                             mode="horizontal"
                             defaultSelectedKeys={['1']}
                             style={{ lineHeight: '64px' }}
-                            onSelect={(e)=>this.setState({selectMenu: e.key})}
+                            onSelect={this.handleSelectMenu}
                         >
                             <Menu.Item key="1">Order</Menu.Item>
                             <Menu.Item key="2">Complete</Menu.Item>
@@ -68,7 +69,6 @@ class BohPage extends React.Component {
     }
 
 }
-
 
 
 export default BohPage;

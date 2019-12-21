@@ -3,12 +3,6 @@ import React from 'react'
 //ant design
 import {Button } from 'antd';
 
-
-// redux
-import { connect } from 'react-redux'
-import { createStructuredSelector } from 'reselect'
-import { selectOrderLists } from '../../redux/order/order.selector'
-
 // component
 import TableOrder from '../table-order/table.order.compoent'
 
@@ -28,8 +22,8 @@ class OrderContainer extends React.Component {
 
                 {
                     selectDisplay === '1' ?
-                    <TableOrder orderLists={this.props.orderList} show={true} /> :
-                    <TableOrder orderLists={this.props.orderList} show={false} />
+                    <TableOrder show={true} /> :
+                    <TableOrder show={false} />
                 }
 
 
@@ -40,9 +34,4 @@ class OrderContainer extends React.Component {
     
 }
 
-
-const mapStateToProp = createStructuredSelector({
-    orderList : selectOrderLists
-})
-
-export default connect(mapStateToProp)(OrderContainer)
+export default OrderContainer
