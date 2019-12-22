@@ -1,39 +1,31 @@
 import React from 'react'
 
 // ant design
-import { Table } from 'antd';
+import { Table, Button } from 'antd';
 import { Popconfirm } from 'antd';
 
 // redux
 import { connect } from 'react-redux'
-import { setServeStatus } from '../../redux/order/order.action'
-import { loadData } from '../../redux/order/order.action'
+import { setServeStatus, fetchingDataLoading, loadData, fetchingClearOrder, fetchingCloseOrder } from '../../redux/order/order.action'
 import { createStructuredSelector } from 'reselect'
 import { selectOrderLists } from '../../redux/order/order.selector'
 
-// mock data
-import { orderData } from '../../redux/order/order.data'
-
 
 class TableOrder extends React.Component {
+    
 
-    handleServeChange = async (key) => {
-
-        const data = [
-            ...this.props.orderListtest
-        ];
-
-        const updateOrderList = data.map((data) => data.key===key? {...data, status:false} : data)
-
-        this.props.setServe(updateOrderList)
-
-
+    handleServeChange = (orderItem) => {
+        this.props.fetchCloseOrder(orderItem)
     };
 
     componentDidMount = () => {
-        this.props.loadData(orderData)
+        this.props.fetchData()
     }
-    
+
+    clearOrder = (orderItem) => {
+        this.props.fetchClearOrder(orderItem)
+    }
+
     render(){
 
         const { show } = this.props
@@ -47,14 +39,14 @@ class TableOrder extends React.Component {
             },
             {
               title: 'Menu',
-              dataIndex: 'menu',
+              dataIndex: 'menu_name',
               key: 'menu',
               ellipsis: true,
             },
             {
               title: 'Unit',
-              dataIndex: 'unit',
-              key: 'unit',
+              dataIndex: 'quantity',
+              key: 'quantity',
               ellipsis: true,
             },
             {
@@ -65,8 +57,8 @@ class TableOrder extends React.Component {
               },
             {
                 title: 'Time',
-                dataIndex: 'date',
-                key: 'date',
+                dataIndex: 'createdAt',
+                key: 'createdAt',
                 // sorter: (a, b) => a.address.length - b.address.length,
                 // sortOrder: sortedInfo.columnKey === 'address' && sortedInfo.order,
                 ellipsis: true,
@@ -81,11 +73,11 @@ class TableOrder extends React.Component {
                 <div>
                     {
                         show ? 
-                        <Popconfirm title="Sure to serve?" onConfirm={() => this.handleServeChange(record.key)}>
-                            <a>Serve</a>
+                        <Popconfirm title="Sure to serve?" onConfirm={() => this.handleServeChange(record)}>
+                            <Button type="primary">Serve</Button>
                         </Popconfirm> :
-                        <Popconfirm title="food is served?" onConfirm={() => this.handleServeChange(record.key)}>
-                            <a>Confirm</a>
+                        <Popconfirm title="food is served?" onConfirm={() => this.clearOrder(record)}>
+                            <Button type="danger">Confirm</Button>
                         </Popconfirm>
                     }
                     
@@ -98,7 +90,7 @@ class TableOrder extends React.Component {
 
                     <Table 
                         columns={columns} 
-                        dataSource={this.props.orderListtest.filter(data => data.status === show)} 
+                        dataSource={this.props.orderList.filter(data => data.status === show)} 
                         onChange={this.handleChange} 
                     />
 
@@ -108,14 +100,17 @@ class TableOrder extends React.Component {
 
 } 
 
-const mapStateToProps = createStructuredSelector ({
-    orderListtest: selectOrderLists
-})
+// const mapStateToProps = createStructuredSelector ({
+//     orderList: selectOrderLists
+// })
 
 
 const mapDispatchToProps = dispatch => ({
     setServe: (newOrderList) => dispatch(setServeStatus(newOrderList)),
-    loadData: (data) => dispatch(loadData(data))
+    loadData: (data) => dispatch(loadData(data)),
+    fetchData: () => dispatch(fetchingDataLoading()),
+    fetchClearOrder: (data) => dispatch(fetchingClearOrder(data)),
+    fetchCloseOrder: (data) => dispatch(fetchingCloseOrder(data))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps ) (TableOrder);
+export default connect(null, mapDispatchToProps ) (TableOrder);
