@@ -3,41 +3,47 @@ import React from 'react';
 // ant-d component
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
+// redux
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect'
+import { selectUserData, selectUserLoading } from '../redux/user/user.selector';
+import { fetchingDataStart } from '../redux/user/user.action';
 
+// component 
+import ProfileContainer from '../component/profile/profile.component'
 
 class UserPage extends React.Component {
 
   state = {
     collapsed: false,
-    title: 'Your information'
+    title: 'Your information',
+    key: 1
   };
 
   onCollapse = collapsed => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
 
-  fetchData = (path) => {
-    fetch(`http://localhost:3000${path}`)
-      .then(result => result.json())
-      .then(result => console.log(result))
-      .catch(err => console.log(`cant fetch data ${err}`))
-  }
-
   handleTitleChange = (data) => {
-    console.log(data.item.props.value)
     this.setState({
-      title: data.item.props.value
+      title: data.item.props.value,
+      key: data.key
     })
   }
 
+  componentDidMount = () => {
+    this.props.startFetchingData(this.props.history.location.pathname)
+  }
+
+
   render() {
+
+    const { userData } = this.props
 
     const { Header, Content, Footer, Sider } = Layout;
     const { SubMenu } = Menu;
 
-    const { match, history } = this.props
-    
+
     return (
       <div className='App'>
         <Layout style={{ minHeight: '100vh' }}>
@@ -93,9 +99,10 @@ class UserPage extends React.Component {
                     <Breadcrumb style={{ margin: '16px 0' }}>
                         <Breadcrumb.Item>{this.state.title}</Breadcrumb.Item>
                     </Breadcrumb>
-                    <div style={{ padding: 24, background: '#fff', minHeight: 1000 }}>
-                        This gonna be user plate
-                        <button onClick={()=>this.fetchData(history.location.pathname)} > Clickme </button>
+                    <div style={{ padding: 24, background: '#fff', minHeight: '80vh', display: 'flex' }}>
+
+                      <ProfileContainer userData={userData} />
+
                     </div>
                   </Content>
                   <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
@@ -106,4 +113,13 @@ class UserPage extends React.Component {
   }
 }
 
-export default UserPage;
+const mapStateToProps = createStructuredSelector({
+  userData: selectUserData,
+  userLoading: selectUserLoading
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  startFetchingData: (userPath) => dispatch(fetchingDataStart(userPath))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

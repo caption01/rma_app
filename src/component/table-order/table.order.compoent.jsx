@@ -7,8 +7,7 @@ import { Popconfirm } from 'antd';
 // redux
 import { connect } from 'react-redux'
 import { setServeStatus, fetchingDataLoading, loadData, fetchingClearOrder, fetchingCloseOrder } from '../../redux/order/order.action'
-import { createStructuredSelector } from 'reselect'
-import { selectOrderLists } from '../../redux/order/order.selector'
+
 
 
 class TableOrder extends React.Component {
@@ -18,9 +17,9 @@ class TableOrder extends React.Component {
         this.props.fetchCloseOrder(orderItem)
     };
 
-    componentDidMount = () => {
-        this.props.fetchData()
-    }
+    // componentDidMount = () => {
+    //     this.props.fetchData()
+    // }
 
     clearOrder = (orderItem) => {
         this.props.fetchClearOrder(orderItem)

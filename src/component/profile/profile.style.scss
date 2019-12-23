@@ -1,0 +1,45 @@
+.profile-container {
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    .profile-card {
+        width: 100%;
+        margin: auto;
+        max-width: 400px;
+
+
+        @media screen and (max-width: 600px) {
+            width: 200px;
+            min-width: 180px;
+        }
+
+        @media screen and (max-width: 800px) {
+            width: 100%;
+        }
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .profile-info {
+        margin-top: 150px;
+
+        @media screen and (max-width: 800px) {
+            margin-top: 75px;
+        }
+
+        @media screen and (max-width: 600px) {
+            margin-top: 0px;
+        }
+
+        h1 {
+            font-size: large;
+        }
+
+    }
+
+}
+

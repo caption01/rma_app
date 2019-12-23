@@ -2,7 +2,13 @@ import { createSelector } from 'reselect';
 
 const selectUserState = state => state.user;
 
-export const selectUser = createSelector(
+export const selectUserData = createSelector(
     [selectUserState],
-    user => user
+    data => data
+)
+
+export const selectUserLoading = createSelector(
+    [selectUserState],
+    loading => loading
+    
 )

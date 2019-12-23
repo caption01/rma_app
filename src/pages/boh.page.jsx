@@ -10,7 +10,7 @@ class BohPage extends React.Component {
 
     state = {
         time : new Date(),
-        selectMenu : 1
+        selectMenu : '1'
     }
 
     componentDidMount = () => {
