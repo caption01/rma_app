@@ -1,0 +1,30 @@
+.menu-component {
+
+    width: 250px;
+
+    margin: 10px;
+
+    text-align: center;
+
+    @media screen and (max-width: 600px) {
+        width: 150px;
+        margin: 10px;
+
+    }
+
+    ul {
+
+        li {
+            margin: 5px 0;
+        }
+   }
+
+   img {
+    height: 170px;
+
+        @media screen and (max-width: 600px) {
+            height: 100px;
+        }
+    }
+   
+}

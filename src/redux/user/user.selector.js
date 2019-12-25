@@ -10,5 +10,9 @@ export const selectUserData = createSelector(
 export const selectUserLoading = createSelector(
     [selectUserState],
     loading => loading
-    
+)
+
+export const selectMenu = createSelector(
+    [selectUserState],
+    object => object.menus
 )

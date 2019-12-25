@@ -41,7 +41,23 @@ export const fetchingDataStart = (path) => {
     fetch(`http://localhost:3000${path}`)
         .then(result => result.json())
         .then(result => dispatch(setUserData(result)))
+        .then(result => dispatch(setOrderHeader(result.payload)))
         .then(result => dispatch(fetchingSuccess()))
         .catch(err => dispatch(fetchingFail(err.message)))
     }
 }
+
+export const setMenu = (menus) => ({
+    type: userType.SET_MENU,
+    payload: menus
+})
+
+export const setOrderHeader = (userInfo) => ({
+    type: userType.SET_ORDER_HEADER,
+    payload: userInfo
+})
+
+export const updateOrderList = (orderList) => ({
+    type: userType.UPDATE_ORDER_REQ,
+    payload: orderList
+})

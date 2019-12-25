@@ -13,8 +13,18 @@ const ProfileContainer = (props) => {
     const { Countdown } = Statistic;
 
     const onFinish = () => {
-        console.log('finished!');
+        handleCloseBillAutomate()
       }
+
+    const handleCloseBillAutomate = () => {
+        fetch(`http://localhost:3000/bills/${userKey}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT'
+        }).then(result => console.log('clsoe bill status automate'))
+        .catch(err => alert('bills close error'))
+    }
 
 
     return (

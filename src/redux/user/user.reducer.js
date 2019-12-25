@@ -3,7 +3,10 @@ import { userType } from './user.type'
 const INTIAL_STATE = {
     data: {},
     loading: true,
-    err: ''
+    err: '',
+    menus: [],
+    orderHeader: {},
+    order_list: []
 
 };
 
@@ -38,6 +41,33 @@ const userReducer = (state=INTIAL_STATE, action) => {
             return {
                 ...state,
                 loading: action.payload
+            }
+
+        case userType.SET_MENU:
+            return {
+                ...state,
+                menus: action.payload
+            }
+
+        case userType.SET_ORDER_HEADER:
+            return {
+                ...state,
+                orderHeader: {
+                    status: true,
+                    tablenumber: action.payload.tableNumber,
+                    bill_id: action.payload.billId
+                }
+            }
+
+        case userType.UPDATE_ORDER_REQ:
+            return {
+                ...state,
+                order_list: [
+                    {
+                        name: action.payload.name,
+                        unit: action.payload.unit
+                    }
+                ]
             }
 
         default: 
