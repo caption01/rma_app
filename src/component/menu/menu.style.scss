@@ -1,7 +1,7 @@
 .menu-component {
 
     width: 250px;
-
+    height: 250px;
     margin: 10px;
 
     text-align: center;
@@ -9,7 +9,8 @@
     @media screen and (max-width: 600px) {
         width: 150px;
         margin: 10px;
-
+        height: 150px;
+        margin: 18px 6px ;
     }
 
     ul {

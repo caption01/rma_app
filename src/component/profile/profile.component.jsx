@@ -47,7 +47,7 @@ const ProfileContainer = (props) => {
                                 <h1>Time left:</h1>
                             </Col>
                             <Col sm={12} xs={12}>
-                                <Countdown value={timeEnd} onFinish={onFinish()} />
+                                <Countdown value={timeEnd} onFinish={()=>onFinish()} />
                             </Col>
                         </Row>
                         <Row  gutter={[24,24]} align='middle'>

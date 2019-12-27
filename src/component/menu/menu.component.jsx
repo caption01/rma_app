@@ -4,7 +4,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect'
 import { updateOrderList } from '../../redux/user/user.action';
-import { selectUserData, selectBillStatus } from '../../redux/user/user.selector';
+import { selectUserData } from '../../redux/user/user.selector';
 
 // ant design
 import { Card, Icon  } from 'antd';

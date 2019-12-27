@@ -12,6 +12,8 @@ import { fetchingDataStart, setMenu, setOrderHeader, updateOrderList } from '../
 // component 
 import ProfileContainer from '../component/profile/profile.component'
 import MenuContainer from '../component/menu-container/menu.container'
+import OrderInQue from '../component/order-inque/order.inque'
+import OrderHistory from '../component/order-history/order.history'
 
 class UserPage extends React.Component {
 
@@ -106,15 +108,17 @@ class UserPage extends React.Component {
                     <Breadcrumb style={{ margin: '16px 0' }}>
                         <Breadcrumb.Item>{this.state.title}</Breadcrumb.Item>
                     </Breadcrumb>
-                    <div style={{ background: '#fff', minHeight: '80vh', display: 'flex' }}>
+                    <div style={{ background: '#fff', minHeight: '80vh' }}>
 
                       {
                         this.state.key === '1' ?
                         <ProfileContainer userData={userData} /> :
                         this.state.key === '2' || this.state.key === '3' || this.state.key === '4' ?
-                        <MenuContainer key={this.state.key} menus={menus}  /> :
-                        this.state.key === '5' || this.state.key === '6' ?
-                        <h1>Order</h1> :
+                        <MenuContainer type={this.state.key} menus={menus}  /> :
+                        this.state.key === '5' ?
+                        <OrderInQue /> :
+                        this.state.key === '6' ?
+                        <OrderHistory /> :
                         <h1>Story</h1>
                       }
 
