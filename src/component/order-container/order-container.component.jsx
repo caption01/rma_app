@@ -16,8 +16,12 @@ import TableOrder from '../table-order/table.order.compoent'
 
 
 class OrderContainer extends React.Component {
+
     componentDidMount() {
-        this.props.fetchData()
+        setInterval(()=>{
+            this.props.fetchData()
+        }, 2000)
+        
     }
 
     render() {
