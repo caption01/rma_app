@@ -9,6 +9,9 @@ import { createStructuredSelector } from 'reselect'
 import { selectUserData, selectUserLoading, selectMenu } from '../redux/user/user.selector';
 import { fetchingDataStart, setMenu, setOrderHeader, updateOrderList } from '../redux/user/user.action';
 
+// react-route
+import {} from 'react-router'
+
 // component 
 import ProfileContainer from '../component/profile/profile.component'
 import MenuContainer from '../component/menu-container/menu.container'
@@ -53,8 +56,10 @@ class UserPage extends React.Component {
     const { Header, Content, Footer, Sider } = Layout;
     const { SubMenu } = Menu;
 
+    console.log(userData.data.status)
+
     return (
-      <div className='App'>
+      <div className='user-container'>
         <Layout style={{ minHeight: '100vh' }}>
             <Sider 
               collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}
@@ -109,17 +114,19 @@ class UserPage extends React.Component {
                         <Breadcrumb.Item>{this.state.title}</Breadcrumb.Item>
                     </Breadcrumb>
                     <div style={{ background: '#fff', minHeight: '80vh' }}>
-
+                      
                       {
-                        this.state.key === '1' ?
+                        this.state.key === '1' && userData.data.status === 'open' ?
                         <ProfileContainer userData={userData} /> :
-                        this.state.key === '2' || this.state.key === '3' || this.state.key === '4' ?
+                        this.state.key === '2' || this.state.key === '3' || this.state.key === '4' && userData.data.status === 'open' ?
                         <MenuContainer type={this.state.key} menus={menus}  /> :
-                        this.state.key === '5' ?
+                        this.state.key === '5' && userData.data.status === 'open' ?
                         <OrderInQue /> :
-                        this.state.key === '6' ?
+                        this.state.key === '6' && userData.data.status === 'open' ?
                         <OrderHistory /> :
-                        <h1>Story</h1>
+                        this.state.key === '7' && userData.data.status === 'open' ?
+                        <h1>Story</h1> :
+                        <h1>Time up please contact to staff</h1>
                       }
 
                     </div>

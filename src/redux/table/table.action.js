@@ -9,11 +9,3 @@ export const fetching = (status) => ({
     type: FETCHING_STATUS,
     payload: status
 })
-
-// export const fetchDataTable = async() => {
-//     return dispatch => {
-//             fetch(`http://localhost:3000/tables`)
-//                 .then(result => dispatch(setDataTable(result.json())))
-//                 .catch(err => console.log(`cant fetch table data ${err}`))
-//     }
-// }

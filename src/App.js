@@ -1,12 +1,13 @@
 import React from 'react';
 
 // react-router setting
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 // redux
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect';
 import { selectRoleStaff } from './redux/staff/staff.selector'
+import { selectUserData } from './redux/user/user.selector'
 
 // page
 import HomePage from './pages/home.page';
@@ -17,7 +18,7 @@ import BohPage from './pages/boh.page'
 class App extends React.Component {
 
   render() {
-    
+
     return (
       <div className='App'>
       <Switch>
@@ -39,7 +40,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  staffRole: selectRoleStaff
+  staffRole: selectRoleStaff,
+  userData: selectUserData
 })
 
 export default connect(mapStateToProps)(App);
