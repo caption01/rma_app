@@ -2,7 +2,7 @@ import { LOGIN_STAFF } from './staff.type'
 
 const INTIAL_STAGE = {
     status: false,
-    role: ''
+    role: 'owner'
 }
 
 const staffReducer = (state=INTIAL_STAGE, action) => {

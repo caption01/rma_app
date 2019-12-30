@@ -13,7 +13,8 @@ import { selectUserData } from './redux/user/user.selector'
 import HomePage from './pages/home.page';
 import UserPage from './pages/user.page';
 import FohPage from './pages/foh.page';
-import BohPage from './pages/boh.page'
+import BohPage from './pages/boh.page';
+import Business from './pages/business.page'
 
 class App extends React.Component {
 
@@ -28,10 +29,11 @@ class App extends React.Component {
             (<FohPage />) :
             this.props.staffRole === 'boh' ?
             (<BohPage />) :
+            this.props.staffRole === 'owner' ?
+            (<Business />) :
             (<HomePage />)
           } 
         />
-        <Route exact path='/user' component={UserPage} />
         <Route path='/qrlogin' component={UserPage} />
       </Switch>
       </div>

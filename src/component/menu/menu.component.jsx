@@ -39,7 +39,8 @@ class MenuComponent extends React.Component {
 
         let orderList = {
             name: data.name,
-            unit: this.state.unit
+            unit: this.state.unit,
+            type: data.type
         }
 
         const { status, billId, tableNumber } = this.props.userData.data
