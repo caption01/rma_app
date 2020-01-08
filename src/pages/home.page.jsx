@@ -35,7 +35,7 @@ class HomePage extends React.Component {
         return(
             <div className='homepage-container'>
                 <BackGround />
-                <Row gutter={[16, 16]} type="flex" justify="space-between" align="middle" style={{ minHeight: '100vh' }}>
+                <Row  type="flex" justify="space-between" align="middle" style={{ minHeight: '90vh' }}>
                     <Col span={12} >
                         <Logo />
                     </Col>

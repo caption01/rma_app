@@ -6,9 +6,8 @@ import './logo.style.scss'
 
 const Logo = () => (
     <div className='logo-container'>
-        <div className='logo-picture-container'>
-            <img alt='logo' className='logo-picure' src={logoPicture} />
-        </div>
+        <h1 className="text-pop-up-top" >Welcome to RMA</h1>
+        <h2 className="text-pop-up-top">Manage Kitchen in Your hand</h2>
     </div>
 )
 

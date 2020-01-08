@@ -47,6 +47,9 @@ class UserPage extends React.Component {
   componentDidMount = () => {
     this.props.startFetchingData(this.props.history.location.pathname)
     this.fetchingMenuFromDB()
+    setInterval(()=>{
+      this.props.startFetchingData(this.props.history.location.pathname)
+    }, 2000)
   }
 
 

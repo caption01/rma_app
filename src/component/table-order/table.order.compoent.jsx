@@ -17,10 +17,6 @@ class TableOrder extends React.Component {
         this.props.fetchCloseOrder(orderItem)
     };
 
-    // componentDidMount = () => {
-    //     this.props.fetchData()
-    // }
-
     clearOrder = (orderItem) => {
         this.props.fetchClearOrder(orderItem)
     }

@@ -14,7 +14,7 @@ class Background extends React.Component{
                     "zIndex": "-100", 
                     "position":"fixed", 
                     'top': '0',
-                    "backgroundColor": "#4c57a4"
+                    "backgroundColor": "#FFFFFF"
                   }}
                 />
             </div>

@@ -10,6 +10,7 @@ import { selectRoleStaff, selectStatusStaff } from '../../redux/staff/staff.sele
 import { Form, Icon, Input, Button, Typography  } from 'antd';
 
 import './login.style.scss'
+import Background from '../background/background.component';
 
 class LoginComponent extends React.Component {
 
@@ -55,8 +56,8 @@ class LoginComponent extends React.Component {
         return(
             <div className='login-container'>
                 <Form onSubmit={this.handleSubmit} className="login-form" layout='horizontal' type='flex' justify="center">
-                    <Form.Item>
-                        <Text code>staff login</Text>
+                    <Form.Item >
+                        <Text code >staff login</Text>
                     </Form.Item>
                     <Form.Item>
                         {getFieldDecorator('username', {
@@ -84,14 +85,7 @@ class LoginComponent extends React.Component {
                             Log in
                         </Button>
                     </Form.Item>
-                    <Form.Item>
-                        <Text code>get QR-code</Text>
-                    </Form.Item>
-                    <Form.Item >
-                        <Button type="primary" htmlType="submit" className="login-form-button" >
-                            Customer
-                        </Button>
-                    </Form.Item>
+                   
                     
                 </Form>
             </div>

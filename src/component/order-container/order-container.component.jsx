@@ -21,7 +21,6 @@ class OrderContainer extends React.Component {
         setInterval(()=>{
             this.props.fetchData()
         }, 2000)
-        
     }
 
     render() {
